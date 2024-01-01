@@ -1,6 +1,5 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import * as web3 from "@solana/web3.js";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { FC, useState } from "react";
 import styles from "../styles/Home.module.css";
 import {
@@ -19,7 +18,7 @@ export const MintToForm: FC = () => {
   const { publicKey, sendTransaction } = useWallet();
   const link = () => {
     return txSig
-      ? `https://explorer.solana.com/tx/${txSig}?cluster=devnet`
+      ? `https://solscan.io/tx/${txSig}?cluster=custom&customUrl=https://staging-rpc.dev.eclipsenetwork.xyz`
       : "";
   };
 
@@ -67,7 +66,7 @@ export const MintToForm: FC = () => {
             id="mint"
             type="text"
             className={styles.formField}
-            placeholder="Enter Token Mint"
+            placeholder="Enter Token Mint Address from Create Mint"
             required
           />
           <label htmlFor="recipient">Recipient:</label>
@@ -97,7 +96,14 @@ export const MintToForm: FC = () => {
         <div>
           <p>Token Balance: {balance} </p>
           <p>View your transaction on </p>
-          <a href={link()}>Solana Explorer</a>
+          <a
+            href={link()}
+            style={{ color: "lightblue" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solana Explorer
+          </a>
         </div>
       ) : null}
     </div>

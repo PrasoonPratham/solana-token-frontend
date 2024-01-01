@@ -12,8 +12,8 @@ const Home: NextPage = (props) => {
   return (
     <div className={styles.App}>
       <Head>
-        <title>Token Program</title>
-        <meta name="description" content="Token Program" />
+        <title>Custom Token Faucet</title>
+        <meta name="description" content="Custom Token Faucet" />
       </Head>
       <WalletContextProvider>
         <AppBar />

@@ -17,7 +17,7 @@ export const CreateMintForm: FC = () => {
   const { publicKey, sendTransaction } = useWallet();
   const link = () => {
     return txSig
-      ? `https://explorer.solana.com/tx/${txSig}?cluster=devnet`
+      ? `https://solscan.io/tx/${txSig}?cluster=custom&customUrl=https://staging-rpc.dev.eclipsenetwork.xyz`
       : "";
   };
 
@@ -43,7 +43,7 @@ export const CreateMintForm: FC = () => {
       }),
       createInitializeMintInstruction(
         mint.publicKey,
-        0,
+        6,
         publicKey,
         publicKey,
         TOKEN_PROGRAM_ID
@@ -73,7 +73,14 @@ export const CreateMintForm: FC = () => {
         <div>
           <p>Token Mint Address: {mint}</p>
           <p>View your transaction on </p>
-          <a href={link()}>Solana Explorer</a>
+          <a
+            href={link()}
+            style={{ color: "lightblue" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solana Explorer
+          </a>
         </div>
       ) : null}
     </div>

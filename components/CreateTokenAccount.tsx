@@ -18,10 +18,11 @@ export const CreateTokenAccountForm: FC = () => {
   const { publicKey, sendTransaction } = useWallet();
   const link = () => {
     return txSig
-      ? `https://explorer.solana.com/tx/${txSig}?cluster=devnet`
+      ? `https://solscan.io/tx/${txSig}?cluster=custom&customUrl=https://staging-rpc.dev.eclipsenetwork.xyz`
       : "";
   };
 
+  //
   const createTokenAccount = async (event) => {
     event.preventDefault();
     if (!connection || !publicKey) {
@@ -66,7 +67,7 @@ export const CreateTokenAccountForm: FC = () => {
             id="mint"
             type="text"
             className={styles.formField}
-            placeholder="Enter Token Mint"
+            placeholder="Enter Token Mint Address from Create Mint"
             required
           />
           <label htmlFor="owner">Token Account Owner:</label>
@@ -74,7 +75,7 @@ export const CreateTokenAccountForm: FC = () => {
             id="owner"
             type="text"
             className={styles.formField}
-            placeholder="Enter Token Account Owner PublicKey"
+            placeholder="Enter Token Account Owner PublicKey from Wallet"
             required
           />
           <button type="submit" className={styles.formButton}>
@@ -88,7 +89,14 @@ export const CreateTokenAccountForm: FC = () => {
         <div>
           <p>Token Account Address: {tokenAccount}</p>
           <p>View your transaction on </p>
-          <a href={link()}>Solana Explorer</a>
+          <a
+            href={link()}
+            style={{ color: "lightblue" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solana Explorer
+          </a>
         </div>
       ) : null}
     </div>
